@@ -6,7 +6,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 //loading a texture using textureLoader
 const textureLoader = new THREE.TextureLoader();
-const matcapTexture = textureLoader.load('/matcaps/1.png');
+const matcapTexture = textureLoader.load('/matcaps/8.png');
+const donutMatcapTexture = textureLoader.load('/matcaps/8.png');
 
 
 //defining a  resize function 
@@ -38,9 +39,9 @@ fontLoader.load(
         curveSegments: 20,
         bevelEnabled: true,
         bevelThickness: 1,
-        bevelSize: 0.5,
-        bevelOffset: 0,
-        bevelSegments: 5
+        bevelSize: 1,
+        bevelOffset: 0.5,
+        bevelSegments: 10
       }
     );
 
@@ -72,8 +73,8 @@ const scene = new THREE.Scene();
 
 
 //axes helper
-const axesHelper = new THREE.AxesHelper(200);
-scene.add(axesHelper);
+//const axesHelper = new THREE.AxesHelper(200);
+//scene.add(axesHelper);
 
 
 //create a cube 
@@ -84,7 +85,7 @@ scene.add(axesHelper);
 
 //create a camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight , 0.1 , 5000 );
-camera.position.z = 100;
+camera.position.z = 500;
 
 //adding camera and cube to the scene
 scene.add(camera);
@@ -114,15 +115,15 @@ function animate() {
 animate();
 
 
+const donutGeometry =  new THREE.TorusGeometry(0.3, 0.2, 20, 45)
+const donutMaterial =  new THREE.MeshMatcapMaterial({matcap:donutMatcapTexture})
+
 
 //adding donuts to the scene
-for(let i=0 ; i<100 ; i++){
+for(let i=0 ; i<150 ; i++){
 
   //crate a donut using its geometry and material
-  const donut = new THREE.Mesh(
-    new THREE.TorusGeometry(0.3, 0.2, 20, 45),
-    new THREE.MeshMatcapMaterial({matcap:matcapTexture})
-  )
+  const donut = new THREE.Mesh(donutGeometry,donutMaterial);
  
   //now define its position
   donut.position.x = (Math.random() - 0.5 ) * 2000;

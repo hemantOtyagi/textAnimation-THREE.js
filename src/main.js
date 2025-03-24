@@ -6,8 +6,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 //loading a texture using textureLoader
 const textureLoader = new THREE.TextureLoader();
-const matcapTexture = textureLoader.load('/matcaps/8.png');
-const donutMatcapTexture = textureLoader.load('/matcaps/8.png');
+const matcapTexture = textureLoader.load('../public/static/matcaps/8.png');
+const donutMatcapTexture = textureLoader.load('../public/static/matcaps/8.png');
 
 
 //defining a  resize function 
@@ -28,7 +28,7 @@ const fontLoader = new FontLoader();
 
 //loading a font using font loader
 fontLoader.load(
-  '../static/fonts/helvetiker_bold.typeface.json',
+  '../public/static/fonts/helvetiker_regular.typeface.json',
   (font) => {
     const textGeometry = new TextGeometry(
       'FriedBotStudio',
